@@ -1,7 +1,9 @@
 package com.alpar.szabados.client.entities;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
+@XmlRootElement
 public class User {
 	private long userId;
 	private String userName;
