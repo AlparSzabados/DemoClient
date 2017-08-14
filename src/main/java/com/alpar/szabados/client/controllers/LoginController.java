@@ -1,6 +1,7 @@
 package com.alpar.szabados.client.controllers;
 
-import com.alpar.szabados.client.connectors.UserBean;
+import com.alpar.szabados.client.beans.UserBean;
+import com.alpar.szabados.client.utils.SessionUtils;
 import org.ocpsoft.rewrite.annotation.Join;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +13,10 @@ import java.io.IOException;
 @Component
 @SessionScoped
 @ManagedBean(name = "loginController")
-@Join(path = "/login", to = "/login.jsf")
+@Join(path = "/", to = "/login.jsf")
 public class LoginController {
-	private long userId;
 	private String userName;
 	private String password;
-
-	public long getUserId() {
-		return userId;
-	}
 
 	public String getUserName() {
 		return userName;
@@ -41,16 +37,16 @@ public class LoginController {
 	private UserBean userBean = new UserBean();
 
 	public String validateUsernamePassword() throws IOException {
-		if (userBean.validateUser(userName, userName)) {
+		if (userBean.validateUser(userName, password)) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", userName);
-			return "/hello.xhtml?faces-redirect=true";
+			return "/add-activity.xhtml?faces-redirect=true";
 		} else {
 			return "/login.xhtml?faces-redirect=true";
 		}
 	}
 
-	//logout event, invalidate session
+	//TODO use it
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
