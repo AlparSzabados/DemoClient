@@ -12,7 +12,7 @@ import java.io.IOException;
 @Component
 @SessionScoped
 @ManagedBean(name = "addActivity")
-@Join(path = "/addactivity", to = "/add-activity.jsf")
+@Join(path = "/add-activity", to = "/add-activity.jsf")
 public class AddActivityController {
 	private String activityName;
 
