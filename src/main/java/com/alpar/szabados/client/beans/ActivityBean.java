@@ -8,7 +8,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jettison.json.JSONArray;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import static com.alpar.szabados.client.entities.TaskStatus.NOT_COMPLETED;
 import static org.codehaus.jackson.map.SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS;
@@ -17,7 +16,7 @@ public class ActivityBean {
 	// Path to REST Service URI
 	private static final String SERVER_PATH = "http://localhost:8090/activity/";
 
-	public boolean findUserActivities(String userName) throws IOException {
+	public Activity[] findUserActivities(String userName) throws IOException {
 		String path = SERVER_PATH + "findActivities/" + userName;
 		WebResource webResource = Client.create().resource(path);
 		ClientResponse response = webResource.type("application/json").put(ClientResponse.class);
@@ -25,14 +24,10 @@ public class ActivityBean {
 			ObjectMapper mapper = new ObjectMapper();
 			JSONArray myObject = response.getEntity(JSONArray.class);
 			mapper.configure(FAIL_ON_EMPTY_BEANS, false);
-
 			//TODO refactor
-			Activity[] activityResponse = mapper.readValue(myObject.toString(), Activity[].class);
-
-			System.out.println(Arrays.toString(activityResponse));
-			return true;
+			return mapper.readValue(myObject.toString(), Activity[].class);
 		}
-		return false;
+		return new Activity[0];
 	}
 
 	public boolean createActivity(String activityName, String userName) throws IOException {
