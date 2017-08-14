@@ -8,10 +8,10 @@
 	<ui:define name="content">
 		<h:form id="signup">
 			<p:outputLabel for="userName" value="Chose a User Name: "/>
-			<p:inputText id="userName" value="#{singup.userName}"/>
+			<p:inputText id="userName" value="#{signUpController.userName}"/>
 			<p:outputLabel for="password" value="Chose a Password: "/>
-			<p:inputText id="password" value="#{singup.password}"/>
-			<h:commandButton value="Sign Up" action="#{singup.create}"/>
+			<p:inputText id="password" value="#{signUpController.password}"/>
+			<h:commandButton value="Sign Up" action="#{signUpController.create}"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
