@@ -1,6 +1,7 @@
 package com.alpar.szabados.client.beans;
 
 import com.alpar.szabados.client.entities.Activity;
+import com.alpar.szabados.client.utils.SessionUtils;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -19,7 +20,7 @@ public class ActivityBean {
 	public Activity[] findUserActivities(String userName) throws IOException {
 		String path = SERVER_PATH + "findActivities/" + userName;
 		WebResource webResource = Client.create().resource(path);
-		ClientResponse response = webResource.type("application/json").put(ClientResponse.class);
+		ClientResponse response = webResource.type("application/json").get(ClientResponse.class);
 		if (response.getStatus() == 200) {
 			ObjectMapper mapper = new ObjectMapper();
 			JSONArray myObject = response.getEntity(JSONArray.class);
@@ -35,6 +36,18 @@ public class ActivityBean {
 		WebResource webResource = Client.create().resource(path);
 		ClientResponse response = webResource.type("application/json").put(ClientResponse.class);
 		return response.getStatus() == 200;
+	}
+
+
+	public boolean completeTask(String[] selectedActivities) {
+		int responseStatus = 0;
+		for (String selectedActivity : selectedActivities) {
+			String path = SERVER_PATH + "completeTask/" + selectedActivity + "." + SessionUtils.getUserName();
+			WebResource webResource = Client.create().resource(path);
+			ClientResponse response = webResource.type("application/json").post(ClientResponse.class);
+			responseStatus = response.getStatus();
+		}
+		return responseStatus == 200;
 	}
 }
 

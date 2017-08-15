@@ -13,17 +13,8 @@
 
 				<p:separator/>
 
-				<p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
+				<p:commandButton value="Submit" action="#{profileController.completeTask}" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
 
-
-				<!--<p:outputPanel id="display">-->
-					<!--<p:dataList value="#{}" var="city">-->
-						<!--<f:facet name="header">-->
-							<!--Grid-->
-						<!--</f:facet>-->
-						<!--#{city}-->
-					<!--</p:dataList>-->
-				<!--</p:outputPanel>-->
 			</h:form>
 		</f:view>
 	</ui:define>

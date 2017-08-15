@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @ManagedBean(name = "profileController")
 @Join(path = "/activities", to = "/activities.jsf")
 public class ProfileController {
-	private List<Activity> activities;
+	private List<String> activities;
 	private String[] selectedActivities;
 
 	@Deferred
@@ -30,14 +30,19 @@ public class ProfileController {
 	public void loadData() throws IOException {
 		ActivityBean activityBean = new ActivityBean();
 		Activity[] userActivities = activityBean.findUserActivities(SessionUtils.getUserName());
-		activities = Arrays.stream(userActivities).collect(Collectors.toList());
+		activities = Arrays.stream(userActivities).map(Activity::getActivityName).collect(Collectors.toList());
 	}
 
-	public List<Activity> getActivities() {
+	public void completeTask() {
+		ActivityBean activityBean = new ActivityBean();
+		activityBean.completeTask(selectedActivities);
+	}
+
+	public List<String> getActivities() {
 		return activities;
 	}
 
-	public void setActivities(List<Activity> activities) {
+	public void setActivities(List<String> activities) {
 		this.activities = activities;
 	}
 
