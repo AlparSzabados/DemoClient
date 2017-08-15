@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+	  xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="profile-layout.xhtml">
+	<ui:define name="content">
+		<f:view>
+			<h:form id="activityForm">
+				<h3>Did you finish any of your activities?</h3>
+				<p:selectManyCheckbox id="grid" value="#{profileController.selectedActivities}" layout="grid" columns="3">
+					<f:selectItems value="#{profileController.activities}" var="activityName" itemLabel="#{activityName}" itemValue="#{activityName}"/>
+				</p:selectManyCheckbox>
 
-<f:view>
-	<h:form id="activityForm">
-		<h3>Wlcome "${userController.getLoggedUsers()}")</h3>
-		<p:selectManyCheckbox id="grid" value="#{adminController.selectedCities}" layout="grid" columns="3">
-			<f:selectItems value="#{adminController.cities}" var="city" itemLabel="#{city}" itemValue="#{city}"/>
-		</p:selectManyCheckbox>
+				<p:separator/>
 
-		<p:separator/>
-
-		<p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
+				<p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
 
 
-		<p:outputPanel id="display">
-			<p:dataList value="#{adminController.selectedCities}" var="city">
-				<f:facet name="header">
-					Grid
-				</f:facet>
-				#{city}
-			</p:dataList>
-		</p:outputPanel>
-	</h:form>
-</f:view>
+				<!--<p:outputPanel id="display">-->
+					<!--<p:dataList value="#{}" var="city">-->
+						<!--<f:facet name="header">-->
+							<!--Grid-->
+						<!--</f:facet>-->
+						<!--#{city}-->
+					<!--</p:dataList>-->
+				<!--</p:outputPanel>-->
+			</h:form>
+		</f:view>
+	</ui:define>
+</ui:composition>
 </html>
