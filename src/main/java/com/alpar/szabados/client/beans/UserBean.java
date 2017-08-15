@@ -19,7 +19,7 @@ public class UserBean {
 	public boolean validateUser(String userName, String password) throws IOException {
 		String path = SERVER_PATH + "validateUser/" + userName + "." + password;
 		WebResource webResource = Client.create().resource(path);
-		ClientResponse response = webResource.type("application/json").put(ClientResponse.class);
+		ClientResponse response = webResource.type("application/json").get(ClientResponse.class);
 		return response.getStatus() == 200;
 	}
 }
