@@ -7,13 +7,13 @@
 		<f:view>
 			<h:form id="activityForm">
 				<h3>Did you finish any of your activities?</h3>
-				<p:selectManyCheckbox id="grid" value="#{profileController.selectedActivities}" layout="grid" columns="3">
-					<f:selectItems value="#{profileController.activities}" var="activityName" itemLabel="#{activityName}" itemValue="#{activityName}"/>
+				<p:selectManyCheckbox id="grid" value="#{finishTaskController.selectedActivities}" layout="grid" columns="3">
+					<f:selectItems value="#{finishTaskController.activities}" var="activityName" itemLabel="#{activityName}" itemValue="#{activityName}"/>
 				</p:selectManyCheckbox>
 
 				<p:separator/>
 
-				<p:commandButton value="Submit" action="#{profileController.completeTask}" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
+				<p:commandButton value="Submit" action="#{finishTaskController.completeTask}" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
 
 			</h:form>
 		</f:view>
