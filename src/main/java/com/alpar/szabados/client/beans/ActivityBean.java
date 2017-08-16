@@ -13,6 +13,7 @@ import java.io.IOException;
 import static com.alpar.szabados.client.entities.TaskStatus.NOT_COMPLETED;
 import static org.codehaus.jackson.map.SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS;
 
+// TODO make it work for spaces also
 public class ActivityBean {
 	// Path to REST Service URI
 	private static final String SERVER_PATH = "http://localhost:8090/activity/";

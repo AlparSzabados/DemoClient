@@ -6,6 +6,7 @@ import com.sun.jersey.api.client.WebResource;
 
 import java.io.IOException;
 
+// TODO make it work for spaces also
 public class UserBean {
 	private static final String SERVER_PATH = "http://localhost:8090/user/";
 
