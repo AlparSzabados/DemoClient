@@ -15,20 +15,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
-@SessionScoped
 @ManagedBean(name = "history")
 @Join(path = "/history", to = "/activity-history.jsf")
 public class ActivityHistoryController {
-    private List<Activity> activities;
-
-    @Deferred
-    @RequestAction
-    @IgnorePostback
-    public void loadData() throws IOException {
-        ActivityBean activityBean = new ActivityBean();
-        activities = Arrays.asList(activityBean.findUserActivities(SessionUtils.getUserName()));
-    }
+    private ActivityBean activityBean = new ActivityBean();
+    private List<Activity> activities = Arrays.asList(activityBean.findUserActivities(SessionUtils.getUserName()));
 
     public List<Activity> getActivities() {
         return activities;
