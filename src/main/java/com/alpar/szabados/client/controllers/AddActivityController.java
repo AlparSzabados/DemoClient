@@ -9,8 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 
-@Component
-@SessionScoped
 @ManagedBean(name = "addActivity")
 @Join(path = "/add-activity", to = "/add-activity.jsf")
 public class AddActivityController {
@@ -19,7 +17,7 @@ public class AddActivityController {
     public String createActivity() throws IOException {
         ActivityBean activityBean = new ActivityBean();
         activityBean.createActivity(activityName, SessionUtils.getUserName());
-        return ""; //TODO redirect accordingly
+        return "/activities.xhtml?faces-redirect=true";
     }
 
     public String getActivityName() {
