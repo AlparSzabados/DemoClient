@@ -8,9 +8,9 @@
 	<ui:define name="content">
 		<h:form id="login">
 			<p:outputLabel for="userName" value="Login Name: "/>
-			<p:inputText id="userName" value="#{loginController.userName}"/>
+			<p:inputText id="userName" value="#{loginController.user.userName}"/>
 			<p:outputLabel for="password" value="Password: "/>
-			<p:inputText id="password" value="#{loginController.password}"/>
+			<p:inputText id="password" value="#{loginController.user.password}"/>
 			<h:commandButton action="#{loginController.validateUsernamePassword}"/>
 		</h:form>
 	</ui:define>
