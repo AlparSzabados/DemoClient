@@ -13,9 +13,9 @@ import java.io.IOException;
 @Join(path = "/add-activity", to = "/add-activity.jsf")
 public class AddActivityController {
     private String activityName;
+    private ActivityBean activityBean = new ActivityBean();
 
     public String createActivity() throws IOException {
-        ActivityBean activityBean = new ActivityBean();
         activityBean.createActivity(activityName, SessionUtils.getUserName());
         return "/activities.xhtml?faces-redirect=true";
     }
