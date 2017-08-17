@@ -12,13 +12,11 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
-import static com.alpar.szabados.client.entities.TaskStatus.NOT_COMPLETED;
 import static org.codehaus.jackson.map.SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS;
 
 // TODO make it work for spaces also
 @Component
 public class ActivityBean {
-    // Path to REST Service URI
     private static final String HOST = System.getProperty("server.host", "localhost");
     private static final String PORT = System.getProperty("server.port", "8090");
     private static final String SERVER_PATH = "http://" + HOST + ":" + PORT + "/activity/"; // TODO should work from other host also
@@ -30,15 +28,14 @@ public class ActivityBean {
         if (isOk(response)) {
             ObjectMapper mapper = new ObjectMapper().configure(FAIL_ON_EMPTY_BEANS, false);
 
-            //TODO refactor
             JSONArray myObject = response.getEntity(JSONArray.class);
             return mapper.readValue(myObject.toString(), Activity[].class);
         }
         return new Activity[0];
     }
 
-    public boolean createActivity(String activityName, String userName) throws IOException { // TODO rename
-        String path = SERVER_PATH + "createActivity/" + activityName + "." + NOT_COMPLETED + "." + userName;
+    public boolean createActivity(String activityName, String userName) throws IOException {
+        String path = SERVER_PATH + "createActivity/" + activityName + "." + userName;
         WebResource webResource = Client.create().resource(path);
         ClientResponse response = webResource.type("application/json").put(ClientResponse.class);
         return isOk(response);

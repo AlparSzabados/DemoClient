@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="profile-layout.xhtml">
-	<ui:define name="content">
-		<f:view>
-			<h:form id="activityForm">
-				<h3>Did you finish any of your activities?</h3>
-				<p:selectManyCheckbox id="grid" value="#{finishTaskController.selectedActivities}" layout="grid" columns="3">
-					<f:selectItems value="#{finishTaskController.activities}" var="activityName" itemLabel="#{activityName}" itemValue="#{activityName}"/>
-				</p:selectManyCheckbox>
+    <ui:define name="content">
+        <f:view>
+            <h:form id="activityForm">
+                <h3>Did you finish any of your activities?</h3>
+                <p:selectManyCheckbox id="grid" value="#{finishTaskController.selectedActivities}" layout="grid" columns="3">
+                    <f:selectItems value="#{finishTaskController.activities}" var="activityName" itemLabel="#{activityName}" itemValue="#{activityName}"/>
+                </p:selectManyCheckbox>
 
-				<p:separator/>
+                <p:separator/>
 
-				<p:commandButton value="Submit" action="#{finishTaskController.completeTask}" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
+                <p:commandButton value="Submit" action="#{finishTaskController.completeTask}" oncomplete="PF('dlg').show()" icon="ui-icon-check"/>
 
-			</h:form>
-		</f:view>
-	</ui:define>
+            </h:form>
+        </f:view>
+    </ui:define>
 </ui:composition>
 </html>
