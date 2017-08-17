@@ -10,7 +10,6 @@ import java.io.IOException;
 import static com.alpar.szabados.client.beans.ActivityBean.isOk;
 
 // TODO make it work for spaces also
-@Component
 public class UserBean {
     private static final String SERVER_PATH = "http://localhost:8090/user/";
 

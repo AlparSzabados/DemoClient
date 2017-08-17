@@ -15,7 +15,6 @@ import java.io.IOException;
 import static org.codehaus.jackson.map.SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS;
 
 // TODO make it work for spaces also
-@Component
 public class ActivityBean {
     private static final String HOST = System.getProperty("server.host", "localhost");
     private static final String PORT = System.getProperty("server.port", "8090");
