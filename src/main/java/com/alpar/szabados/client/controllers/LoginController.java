@@ -16,7 +16,7 @@ public class LoginController {
     private UserBean userBean = new UserBean();
 
     public String validateUsernamePassword() throws IOException {
-        if (userBean.validateUser(user.getUserName(), user.getPassword())) {
+        if (userBean.validateUser(user)) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user.getUserName());
             return "/add-activity.xhtml?faces-redirect=true";

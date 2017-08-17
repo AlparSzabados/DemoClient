@@ -18,7 +18,7 @@ public class SignUpController {
     public String create() throws IOException {
         HttpSession session = SessionUtils.getSession();
         session.setAttribute("username", user.getUserName());
-        if (userBean.createUser(user.getUserName(), user.getPassword())) {
+        if (userBean.createUser(user)) {
             return "/add-activity.xhtml?faces-redirect=true";
         } else {
             return "/sign-up.xhtml?faces-redirect=true";
