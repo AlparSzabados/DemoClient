@@ -14,25 +14,23 @@ import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @SessionScoped
 @ManagedBean(name = "history")
 @Join(path = "/history", to = "/activity-history.jsf")
 public class ActivityHistoryController {
-	private List<Activity> activities;
+    private List<Activity> activities;
 
-	@Deferred
-	@RequestAction
-	@IgnorePostback
-	public void loadData() throws IOException {
-		ActivityBean activityBean = new ActivityBean();
-		Activity[] userActivities = activityBean.findUserActivities(SessionUtils.getUserName());
-		activities = Arrays.stream(userActivities).collect(Collectors.toList());
-	}
+    @Deferred
+    @RequestAction
+    @IgnorePostback
+    public void loadData() throws IOException {
+        ActivityBean activityBean = new ActivityBean();
+        activities = Arrays.asList(activityBean.findUserActivities(SessionUtils.getUserName()));
+    }
 
-	public List<Activity> getActivities() {
-		return activities;
-	}
+    public List<Activity> getActivities() {
+        return activities;
+    }
 }

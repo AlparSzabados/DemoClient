@@ -15,40 +15,39 @@ import java.io.IOException;
 @ManagedBean(name = "signUpController")
 @Join(path = "/sign-up", to = "/sign-up.jsf")
 public class SignUpController {
-	private long userId;
-	private String userName;
-	private String password;
+    private long userId;
+    private String userName;
+    private String password;
+    private UserBean userBean = new UserBean();
 
-	public long getUserId() {
-		return userId;
-	}
+    public long getUserId() {
+        return userId;
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	private UserBean userBean = new UserBean();
-
-	public String create() throws IOException {
-		UserBean userBean = new UserBean();
-		HttpSession session = SessionUtils.getSession();
-		session.setAttribute("username", userName);
-		if (userBean.createUser(userName, password)) {
-			return "/add-activity.xhtml?faces-redirect=true";
-		} else {
-			return "/sign-up.xhtml?faces-redirect=true";
-		}
-	}
+    public String create() throws IOException {
+        UserBean userBean = new UserBean();
+        HttpSession session = SessionUtils.getSession();
+        session.setAttribute("username", userName);
+        if (userBean.createUser(userName, password)) {
+            return "/add-activity.xhtml?faces-redirect=true";
+        } else {
+            return "/sign-up.xhtml?faces-redirect=true";
+        }
+    }
 }

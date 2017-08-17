@@ -14,19 +14,19 @@ import java.io.IOException;
 @ManagedBean(name = "addActivity")
 @Join(path = "/add-activity", to = "/add-activity.jsf")
 public class AddActivityController {
-	private String activityName;
+    private String activityName;
 
-	public String createActivity() throws IOException {
-		ActivityBean activityBean = new ActivityBean();
-		activityBean.createActivity(activityName, SessionUtils.getUserName());
-		return ""; //TODO redirect accordingly
-	}
+    public String createActivity() throws IOException {
+        ActivityBean activityBean = new ActivityBean();
+        activityBean.createActivity(activityName, SessionUtils.getUserName());
+        return ""; //TODO redirect accordingly
+    }
 
-	public String getActivityName() {
-		return activityName;
-	}
+    public String getActivityName() {
+        return activityName;
+    }
 
-	public void setActivityName(String activityName) {
-		this.activityName = activityName;
-	}
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
 }

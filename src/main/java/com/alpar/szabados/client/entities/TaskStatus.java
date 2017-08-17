@@ -1,6 +1,6 @@
 package com.alpar.szabados.client.entities;
 
-public enum TaskStatus {
-	COMPLETED,
-	NOT_COMPLETED
+public enum TaskStatus { // TODO unify
+    COMPLETED,
+    NOT_COMPLETED
 }

@@ -15,41 +15,40 @@ import java.io.IOException;
 @ManagedBean(name = "loginController")
 @Join(path = "/", to = "/login.jsf")
 public class LoginController {
-	private String userName;
-	private String password;
+    private String userName;
+    private String password;
+    private UserBean userBean = new UserBean();
 
-	public String getUserName() {
-		return userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	private UserBean userBean = new UserBean();
+    public String validateUsernamePassword() throws IOException {
+        if (userBean.validateUser(userName, password)) {
+            HttpSession session = SessionUtils.getSession();
+            session.setAttribute("username", userName);
+            return "/add-activity.xhtml?faces-redirect=true";
+        } else {
+            return "/login.xhtml?faces-redirect=true";
+        }
+    }
 
-	public String validateUsernamePassword() throws IOException {
-		if (userBean.validateUser(userName, password)) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", userName);
-			return "/add-activity.xhtml?faces-redirect=true";
-		} else {
-			return "/login.xhtml?faces-redirect=true";
-		}
-	}
-
-	//TODO use it
-	public String logout() {
-		HttpSession session = SessionUtils.getSession();
-		session.invalidate();
-		return "/login.xhtml?faces-redirect=true";
-	}
+    //TODO use it
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "/login.xhtml?faces-redirect=true";
+    }
 }
