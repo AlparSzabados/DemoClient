@@ -33,6 +33,9 @@ public class FinishTaskController {
                                                 .filter(activity -> activity.getTaskStatus() == TaskStatus.COMPLETED)
                                                 .map(Activity::getActivityName).map(String::toString).toArray(String[]::new);
 
+    public FinishTaskController() throws IOException {
+    }
+
     public String completeTask() throws IOException {
         activityBean.completeTask(selectedActivities);
         return "/activity-history.xhtml?faces-redirect=true";

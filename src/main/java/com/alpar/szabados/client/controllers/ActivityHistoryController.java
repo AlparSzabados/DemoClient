@@ -21,6 +21,9 @@ public class ActivityHistoryController {
     private ActivityBean activityBean = new ActivityBean();
     private List<Activity> activities = Arrays.asList(activityBean.findUserActivities(SessionUtils.getUserName()));
 
+    public ActivityHistoryController() throws IOException {
+    }
+
     public List<Activity> getActivities() {
         return activities;
     }
