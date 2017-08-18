@@ -13,7 +13,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public class UserBean {
     private static final String HOST = System.getProperty("server.host", "localhost");
     private static final String PORT = System.getProperty("server.port", "8090");
-    private static final String SERVER_PATH = "http://" + HOST + ":" + PORT + "/activity/";
+    private static final String SERVER_PATH = "http://" + HOST + ":" + PORT + "/user/";
 
     public boolean createUser(User user) throws IOException {
         String path = SERVER_PATH + "createUser/";
