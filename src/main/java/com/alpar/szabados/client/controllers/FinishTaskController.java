@@ -3,6 +3,7 @@ package com.alpar.szabados.client.controllers;
 import com.alpar.szabados.client.beans.ActivityBean;
 import com.alpar.szabados.client.entities.Activity;
 import com.alpar.szabados.client.entities.TaskStatus;
+import com.alpar.szabados.client.entities.User;
 import com.alpar.szabados.client.utils.SessionUtils;
 import org.ocpsoft.rewrite.annotation.Join;
 
@@ -21,23 +22,34 @@ public class FinishTaskController {
     private String now = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
 
     private ActivityBean activityBean = new ActivityBean();
-    private Activity[] userActivities = activityBean.findUserActivities(SessionUtils.getUserName());
+    private Activity[] userActivities = getUserActivities();
 
-    private List<String> activities = Arrays.stream(userActivities)
-                                            .map(Activity::getActivityName)
-                                            .distinct()
-                                            .collect(Collectors.toList());
+    private List<String> activities = getActivityNames();
+    private String[] selectedActivities = getFinishedActivities();
 
-    private String[] selectedActivities = Arrays.stream(userActivities)
-                                                .filter(activity -> Objects.equals(activity.getActivityDate(), now))
-                                                .filter(activity -> activity.getTaskStatus() == TaskStatus.COMPLETED)
-                                                .map(Activity::getActivityName).map(String::toString).toArray(String[]::new);
+    private Activity[] getUserActivities() throws IOException {
+        return activityBean.findUserActivities(new User(SessionUtils.getUserName()));
+    }
+
+    private List<String> getActivityNames() {
+        return Arrays.stream(userActivities)
+                     .map(Activity::getActivityName)
+                     .distinct()
+                     .collect(Collectors.toList());
+    }
+
+    private String[] getFinishedActivities() {
+        return Arrays.stream(userActivities)
+                     .filter(activity -> Objects.equals(activity.getActivityDate(), now))
+                     .filter(activity -> activity.getTaskStatus() == TaskStatus.COMPLETED)
+                     .map(Activity::getActivityName).map(String::toString).toArray(String[]::new);
+    }
 
     public FinishTaskController() throws IOException {
     }
 
     public String completeTask() throws IOException {
-        activityBean.completeTask(selectedActivities);
+        activityBean.completeTask(selectedActivities, new User(SessionUtils.getUserName()));
         return "/activity-history.xhtml?faces-redirect=true";
     }
 
