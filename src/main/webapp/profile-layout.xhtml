@@ -6,9 +6,9 @@
       xmlns:p="http://primefaces.org/ui">
 <f:view>
     <h:head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>User Page</title>
     </h:head>
     <h:body>
@@ -16,15 +16,15 @@
             <div class="ui-g-12">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:button href="/add-activity" value="Add New Activity" />
-                        <p:button href="/activities" value="My Activities" />
-                        <p:button href="/history" value="History" />
+                        <p:button href="/add-activity" value="Add New Activity"/>
+                        <p:button href="/activities" value="My Activities"/>
+                        <p:button href="/history" value="History"/>
                         <p:commandButton value="Log Out" action="#{loginController.logout}"/>
                     </f:facet>
                 </p:toolbar>
             </div>
             <div class="ui-g-12">
-                <ui:insert name="content" />
+                <ui:insert name="content"/>
             </div>
         </div>
     </h:body>
