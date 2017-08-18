@@ -2,12 +2,12 @@ package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.UserBean;
 import com.alpar.szabados.client.entities.User;
-import com.alpar.szabados.client.utils.SessionUtils;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static com.alpar.szabados.client.utils.Utils.getSession;
 
 @ManagedBean(name = "loginController")
 @Join(path = "/", to = "/login.jsf")
@@ -17,8 +17,7 @@ public class LoginController {
 
     public String validateUsernamePassword() throws IOException {
         if (userBean.validateUser(user)) {
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", user.getUserName());
+            getSession().setAttribute("username", user.getUserName());
             return "/add-activity.xhtml?faces-redirect=true";
         } else {
             return "/login.xhtml?faces-redirect=true";
@@ -26,8 +25,7 @@ public class LoginController {
     }
 
     public String logout() {
-        HttpSession session = SessionUtils.getSession();
-        session.invalidate();
+        getSession().invalidate();
         return "/login.xhtml?faces-redirect=true";
     }
 

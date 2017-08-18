@@ -25,16 +25,21 @@ public class AuthorizationFilter implements Filter {
             HttpSession ses = reqt.getSession(false);
 
             String reqURI = reqt.getRequestURI();
-            if (reqURI.contains("/login.xhtml")
-                    || (ses != null && ses.getAttribute("username") != null)
-                    || reqURI.contains("/public/")
-                    || reqURI.contains("javax.faces.resource"))
+            if (xxx(ses, reqURI)) {
                 chain.doFilter(request, response);
-            else
+            } else {
                 resp.sendRedirect(reqt.getContextPath() + "/login.xhtml?faces-redirect=true");
+            }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
+    }
+
+    private boolean xxx(HttpSession ses, String reqURI) { // TODO rename
+        return reqURI.contains("/login.xhtml")
+                || (ses != null && ses.getAttribute("username") != null)
+                || reqURI.contains("/public/")
+                || reqURI.contains("javax.faces.resource");
     }
 
     @Override

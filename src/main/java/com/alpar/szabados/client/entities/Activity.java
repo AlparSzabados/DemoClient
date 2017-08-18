@@ -5,10 +5,8 @@ import java.io.Serializable;
 
 @XmlRootElement
 public class Activity implements Serializable {
-    private long activityId;
-    private long userId;
-    private String activityName;
-    private String activityDate;
+    private long activityId, userId;
+    private String activityName, activityDate;
     private TaskStatus taskStatus;
 
     public Activity() {

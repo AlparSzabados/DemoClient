@@ -2,12 +2,12 @@ package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.UserBean;
 import com.alpar.szabados.client.entities.User;
-import com.alpar.szabados.client.utils.SessionUtils;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static com.alpar.szabados.client.utils.Utils.getSession;
 
 @ManagedBean(name = "signUpController")
 @Join(path = "/sign-up", to = "/sign-up.jsf")
@@ -16,8 +16,7 @@ public class SignUpController {
     private UserBean userBean = new UserBean();
 
     public String create() throws IOException {
-        HttpSession session = SessionUtils.getSession();
-        session.setAttribute("username", user.getUserName());
+        getSession().setAttribute("username", user.getUserName());
         if (userBean.createUser(user)) {
             return "/add-activity.xhtml?faces-redirect=true";
         } else {

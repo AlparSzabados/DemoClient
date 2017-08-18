@@ -6,7 +6,6 @@ import java.util.Objects;
 
 @XmlRootElement
 public class User implements Serializable {
-    private long userId;
     private String userName;
     private String encodedPassword;
 
@@ -40,7 +39,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("User{userId=%d, userName='%s', encodedPassword='%s'}", userId, userName, encodedPassword);
+        return String.format("User{userName='%s', encodedPassword='%s'}", userName, encodedPassword);
     }
 
     @Override
@@ -48,13 +47,12 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId &&
-                Objects.equals(userName, user.userName) &&
-                Objects.equals(encodedPassword, user.encodedPassword);
+        return Objects.equals(userName, user.userName)
+                && Objects.equals(encodedPassword, user.encodedPassword);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userName, encodedPassword);
+        return Objects.hash(userName, encodedPassword);
     }
 }
