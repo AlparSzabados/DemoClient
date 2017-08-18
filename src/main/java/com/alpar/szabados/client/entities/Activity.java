@@ -1,23 +1,29 @@
 package com.alpar.szabados.client.entities;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 @XmlRootElement
-public class Activity {
+public class Activity implements Serializable {
     private long activityId;
     private long userId;
     private String activityName;
     private String activityDate;
     private TaskStatus taskStatus;
 
+    public Activity() {
+    }
+
+    public Activity(String activityName, TaskStatus taskStatus) {
+        this.activityName = activityName;
+        this.taskStatus = taskStatus;
+    }
+
     public Activity(Long userId, String activityName, String activityDate, TaskStatus taskStatus) {
         this.userId = userId;
         this.activityName = activityName;
         this.activityDate = activityDate;
         this.taskStatus = taskStatus;
-    }
-
-    public Activity() {
     }
 
     public Long getId() {
