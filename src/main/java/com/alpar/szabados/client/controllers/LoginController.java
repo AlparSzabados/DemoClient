@@ -9,7 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 
-import static com.alpar.szabados.client.handlers.ResponseHandler.*;
+import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
+import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static com.alpar.szabados.client.utils.Utils.getSession;
 
 @SessionScoped
@@ -24,9 +25,8 @@ public class LoginController {
         if (isOk(response)) {
             getSession().setAttribute("username", user.getUserName());
             return "activities.xhtml";
-        } else {
-            return handleResponse(response);
         }
+        return handleResponse(response, null);
     }
 
     public String logout() {

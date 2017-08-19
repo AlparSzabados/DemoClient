@@ -8,24 +8,28 @@ import static com.alpar.szabados.client.handlers.MessageFactory.*;
 
 public class ResponseHandler {
 
-    public static String handleResponse(ClientResponse response) {
-        if (isBadRequest(response)) {
-            warn("WARN", "WRONG PASSWORD");
-        } else if (isServerError(response)) {
-            error("ERROR", "USER NOT FOUND");
+    public static String handleResponse(ClientResponse response, String isOkDetail) {
+        if (isOk(response)) {
+            info(isOkDetail);
+        } else if (isBadRequest(response)) {
+            error(response.getEntity(String.class));
+        } else if (isUnauthorized(response)) {
+            warn(response.getEntity(String.class));
+        } else {
+            fatal(response.getEntity(String.class));
         }
         return "";
     }
 
-    private static boolean isServerError(ClientResponse response) {
-        return response.getStatus() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
+    public static boolean isOk(ClientResponse response) { // TODO move to helper
+        return response.getStatus() == Response.Status.OK.getStatusCode();
     }
 
     private static boolean isBadRequest(ClientResponse response) {
         return response.getStatus() == Response.Status.BAD_REQUEST.getStatusCode();
     }
 
-    public static boolean isOk(ClientResponse response) { // TODO move to helper
-        return response.getStatus() == Response.Status.OK.getStatusCode();
+    private static boolean isUnauthorized(ClientResponse response) {
+        return response.getStatus() == Response.Status.UNAUTHORIZED.getStatusCode();
     }
 }
