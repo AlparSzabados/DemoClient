@@ -7,6 +7,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.DispatcherType;
@@ -33,5 +35,10 @@ public class Application extends SpringBootServletInitializer {
         rwFilter.setDispatcherTypes(DISPATCHER_TYPES);
         rwFilter.addUrlPatterns("/*");
         return rwFilter;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
