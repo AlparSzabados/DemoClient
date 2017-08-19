@@ -17,7 +17,7 @@ import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
 @ManagedBean(name = "deleteUserController")
 @Join(path = "/delete-profile", to = "/delete-user.jsf")
-public class DeleteUser {
+public class DeleteUserController {
     private User user = new User();
     private UserBean userBean = new UserBean();
 

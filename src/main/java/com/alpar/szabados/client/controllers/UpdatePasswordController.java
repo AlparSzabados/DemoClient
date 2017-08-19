@@ -16,7 +16,7 @@ import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
 @ManagedBean(name = "updatePasswordController")
 @Join(path = "/update-password", to = "/update-password.jsf")
-public class UpdatePassword {
+public class UpdatePasswordController {
     private String oldPassword;
     private String newPassword;
 
