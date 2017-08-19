@@ -2,16 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
 <ui:composition template="login-layout.xhtml">
     <ui:define name="content">
         <h:form id="login">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
             <p:outputLabel for="userName" value="Login Name: "/>
             <p:inputText id="userName" value="#{loginController.user.userName}"/>
             <p:outputLabel for="password" value="Password: "/>
             <p:password id="password" value="#{loginController.user.encodedPassword}"/>
-            <h:commandButton action="#{loginController.validateUsernamePassword}"/>
+            <p:commandButton value="Submit" action="#{loginController.validateUsernamePassword}" update="messages"/>
         </h:form>
     </ui:define>
 </ui:composition>
