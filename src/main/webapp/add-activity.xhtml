@@ -7,9 +7,13 @@
 <ui:composition template="profile-layout.xhtml">
     <ui:define name="content">
         <h:form id="add-activity">
-            <p:outputLabel for="activityName" value="Activity Name: "/>
-            <p:inputText id="activityName" value="#{addActivity.activityName}"/>
-            <p:commandButton value="Create Activity" action="#{addActivity.createActivity}"/>
+            <p:panel header="Add An Activity">
+                <h:panelGrid columns="1" cellpadding="5px">
+                    <p:outputLabel for="activityName" value="Activity Name: "/>
+                    <p:inputText id="activityName" value="#{addActivity.activityName}"/>
+                    <p:commandButton value="Create Activity" action="#{addActivity.createActivity}"/>
+                </h:panelGrid>
+            </p:panel>
         </h:form>
     </ui:define>
 </ui:composition>

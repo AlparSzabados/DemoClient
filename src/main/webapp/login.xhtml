@@ -8,12 +8,16 @@
 <ui:composition template="login-layout.xhtml">
     <ui:define name="content">
         <h:form id="login">
-            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
-            <p:outputLabel for="userName" value="Login Name: "/>
-            <p:inputText id="userName" value="#{loginController.user.userName}"/>
-            <p:outputLabel for="password" value="Password: "/>
-            <p:password id="password" value="#{loginController.user.password}"/>
-            <p:commandButton value="Submit" action="#{loginController.validateUsernamePassword}" update="messages"/>
+            <p:panel header="Login to your profile">
+                <h:panelGrid columns="1" cellpadding="5px">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                    <p:outputLabel for="userName" value="Login Name: "/>
+                    <p:inputText id="userName" value="#{loginController.user.userName}"/>
+                    <p:outputLabel for="password" value="Password: "/>
+                    <p:password id="password" value="#{loginController.user.password}"/>
+                    <p:commandButton value="Submit" action="#{loginController.validateUsernamePassword}"/>
+                </h:panelGrid>
+            </p:panel>
         </h:form>
     </ui:define>
 </ui:composition>
