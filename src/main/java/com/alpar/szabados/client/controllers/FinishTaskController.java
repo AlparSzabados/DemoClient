@@ -13,7 +13,7 @@ import java.util.List;
 
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
-@SessionScoped
+
 @ManagedBean(name = "finishTaskController")
 @Join(path = "/activities", to = "/activities.jsf")
 public class FinishTaskController {

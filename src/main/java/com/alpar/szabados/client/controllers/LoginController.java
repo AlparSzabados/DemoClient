@@ -13,7 +13,7 @@ import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static com.alpar.szabados.client.utils.SessionUtils.getSession;
 
-@SessionScoped
+
 @ManagedBean(name = "loginController")
 @Join(path = "/", to = "/login.jsf")
 public class LoginController {

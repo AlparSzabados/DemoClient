@@ -12,7 +12,7 @@ import java.io.IOException;
 import static com.alpar.szabados.client.entities.TaskStatus.NOT_COMPLETED;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
-@SessionScoped
+
 @ManagedBean(name = "addActivity")
 @Join(path = "/add-activity", to = "/add-activity.jsf")
 public class AddActivityController {

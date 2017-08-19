@@ -13,7 +13,6 @@ import java.util.List;
 import static com.alpar.szabados.client.utils.LoadDataUtils.getUserActivities;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
-@SessionScoped
 @ManagedBean(name = "history")
 @Join(path = "/history", to = "/activity-history.jsf")
 public class ActivityHistoryController {

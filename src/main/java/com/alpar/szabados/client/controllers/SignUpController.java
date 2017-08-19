@@ -13,7 +13,6 @@ import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static com.alpar.szabados.client.utils.SessionUtils.getSession;
 
-@SessionScoped
 @ManagedBean(name = "signUpController")
 @Join(path = "/sign-up", to = "/sign-up.jsf")
 public class SignUpController {
