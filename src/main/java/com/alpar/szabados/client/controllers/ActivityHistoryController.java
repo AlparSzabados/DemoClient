@@ -5,6 +5,7 @@ import com.alpar.szabados.client.entities.User;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 import static com.alpar.szabados.client.utils.LoadDataUtils.getUserActivities;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
+@SessionScoped
 @ManagedBean(name = "history")
 @Join(path = "/history", to = "/activity-history.jsf")
 public class ActivityHistoryController {

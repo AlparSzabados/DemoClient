@@ -7,11 +7,13 @@ import com.alpar.szabados.client.utils.LoadDataUtils;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 import java.util.List;
 
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
+@SessionScoped
 @ManagedBean(name = "finishTaskController")
 @Join(path = "/activities", to = "/activities.jsf")
 public class FinishTaskController {
