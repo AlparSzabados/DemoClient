@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import static com.alpar.szabados.client.utils.Utils.HOST;
-import static com.alpar.szabados.client.utils.Utils.PORT;
+import static com.alpar.szabados.client.utils.HostConfig.HOST;
+import static com.alpar.szabados.client.utils.HostConfig.PORT;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Component

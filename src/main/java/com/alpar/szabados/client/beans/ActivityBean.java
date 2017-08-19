@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static com.alpar.szabados.client.entities.TaskStatus.COMPLETED;
-import static com.alpar.szabados.client.utils.Utils.HOST;
-import static com.alpar.szabados.client.utils.Utils.PORT;
+import static com.alpar.szabados.client.utils.HostConfig.HOST;
+import static com.alpar.szabados.client.utils.HostConfig.PORT;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.codehaus.jackson.map.SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS;
 
