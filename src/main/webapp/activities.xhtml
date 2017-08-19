@@ -6,7 +6,7 @@
     <ui:define name="content">
         <f:view>
             <h:form id="activityForm">
-                <p:panel header="Did you finish any of your activities today?">
+                <p:panel header="Have you finished any of your activities today?">
                     <h:panelGrid columns="1" cellpadding="5px">
                         <p:selectManyCheckbox id="grid" value="#{finishTaskController.selectedActivities}" layout="grid" columns="3">
                             <f:selectItems value="#{finishTaskController.activities}" var="activityName" itemLabel="#{activityName}"
