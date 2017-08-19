@@ -2,13 +2,17 @@ package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.UserBean;
 import com.alpar.szabados.client.entities.User;
+import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 
+import static com.alpar.szabados.client.handlers.ResponseHandler.*;
 import static com.alpar.szabados.client.utils.Utils.getSession;
 
+@SessionScoped
 @ManagedBean(name = "loginController")
 @Join(path = "/", to = "/login.jsf")
 public class LoginController {
@@ -16,17 +20,18 @@ public class LoginController {
     private UserBean userBean = new UserBean();
 
     public String validateUsernamePassword() throws IOException {
-        if (userBean.validateUser(user)) {
+        ClientResponse response = userBean.validateUser(user);
+        if (isOk(response)) {
             getSession().setAttribute("username", user.getUserName());
-            return "/add-activity.xhtml?faces-redirect=true";
+            return "activities.xhtml";
         } else {
-            return "/login.xhtml?faces-redirect=true";
+            return handleResponse(response);
         }
     }
 
     public String logout() {
         getSession().invalidate();
-        return "/login.xhtml?faces-redirect=true";
+        return "login.xhtml";
     }
 
     public User getUser() {
