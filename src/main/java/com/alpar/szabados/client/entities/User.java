@@ -7,7 +7,7 @@ import java.util.Objects;
 @XmlRootElement
 public class User implements Serializable {
     private String userName;
-    private String encodedPassword;
+    private String password;
 
     public User() {
     }
@@ -16,9 +16,9 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    public User(String userName, String encodedPassword) {
+    public User(String userName, String password) {
         this.userName = userName;
-        this.encodedPassword = encodedPassword;
+        this.password = password;
     }
 
     public String getUserName() {
@@ -29,17 +29,17 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    public String getEncodedPassword() {
-        return encodedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEncodedPassword(String encodedPassword) {
-        this.encodedPassword = encodedPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return String.format("User{userName='%s', encodedPassword='%s'}", userName, encodedPassword);
+        return String.format("User{userName='%s', password='%s'}", userName, password);
     }
 
     @Override
@@ -48,11 +48,11 @@ public class User implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(userName, user.userName)
-                && Objects.equals(encodedPassword, user.encodedPassword);
+                && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, encodedPassword);
+        return Objects.hash(userName, password);
     }
 }
