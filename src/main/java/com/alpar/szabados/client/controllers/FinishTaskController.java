@@ -10,12 +10,12 @@ import javax.faces.bean.ManagedBean;
 import java.io.IOException;
 import java.util.List;
 
-import static com.alpar.szabados.client.utils.Utils.getUserName;
+import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
 @ManagedBean(name = "finishTaskController")
 @Join(path = "/activities", to = "/activities.jsf")
 public class FinishTaskController {
-    private Activity[] userActivities = LoadDataUtils.getUserActivities(new User(getUserName()));
+    private Activity[] userActivities = LoadDataUtils.getUserActivities(new User(getSessionUserName()));
     private List<String> activities = LoadDataUtils.getActivityNames(userActivities);
     private String[] selectedActivities = LoadDataUtils.getFinishedActivities(userActivities);
 
@@ -23,7 +23,7 @@ public class FinishTaskController {
     }
 
     public String completeTask() throws IOException {
-        boolean isOk = new ActivityBean().completeTask(selectedActivities, new User(getUserName()));
+        boolean isOk = new ActivityBean().completeTask(selectedActivities, new User(getSessionUserName()));
         assert isOk; // TODO validate
         return "/activity-history.xhtml?faces-redirect=true";
     }

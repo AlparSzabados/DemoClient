@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import java.io.IOException;
 
 import static com.alpar.szabados.client.entities.TaskStatus.NOT_COMPLETED;
-import static com.alpar.szabados.client.utils.Utils.getUserName;
+import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
 @ManagedBean(name = "addActivity")
 @Join(path = "/add-activity", to = "/add-activity.jsf")
@@ -17,7 +17,7 @@ public class AddActivityController {
     private String activityName;
 
     public String createActivity() throws IOException {
-        new ActivityBean().createOrUpdateActivity(new User(getUserName()), new Activity(activityName, NOT_COMPLETED));
+        new ActivityBean().createOrUpdateActivity(new User(getSessionUserName()), new Activity(activityName, NOT_COMPLETED));
         return "activities.xhtml";
     }
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
-import static com.alpar.szabados.client.utils.Utils.getSession;
+import static com.alpar.szabados.client.utils.SessionUtils.getSession;
 
 @SessionScoped
 @ManagedBean(name = "loginController")

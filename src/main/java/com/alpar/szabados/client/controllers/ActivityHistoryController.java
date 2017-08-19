@@ -10,12 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.alpar.szabados.client.utils.LoadDataUtils.getUserActivities;
-import static com.alpar.szabados.client.utils.Utils.getUserName;
+import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
 @ManagedBean(name = "history")
 @Join(path = "/history", to = "/activity-history.jsf")
 public class ActivityHistoryController {
-    private List<Activity> activities = Arrays.asList(getUserActivities(new User(getUserName())));
+    private List<Activity> activities = Arrays.asList(getUserActivities(new User(getSessionUserName())));
 
     public ActivityHistoryController() throws IOException {
     }
