@@ -28,26 +28,26 @@ public class ActivityBean {
             return new ObjectMapper().configure(FAIL_ON_EMPTY_BEANS, false)
                                      .readValue(response.getEntityInputStream(), Activity[].class);
         } else {
-            return new Activity[0]; // TODO huh?
+            return new Activity[0]; // FIXME
         }
     }
 
     public boolean completeTask(String[] selectedActivities, User user) throws IOException {
         return Arrays.stream(selectedActivities)
                      .map(selectedActivity -> new Activity(selectedActivity, COMPLETED))
-                     .allMatch(activity -> createActivity(user, activity));
+                     .allMatch(activity -> createOrUpdateActivity(user, activity));
     }
 
-    public boolean createActivity(User user, Activity activity) {
+    public boolean createOrUpdateActivity(User user, Activity activity) {
         try {
             String valueAsString = new ObjectMapper().configure(FAIL_ON_EMPTY_BEANS, false)
                                                      .writeValueAsString(new UserAndActivityWrapper(user, activity));
-            ClientResponse response = Client.create().resource(ROOT + "createActivity/")
+            ClientResponse response = Client.create().resource(ROOT + "createOrUpdateActivity/")
                                             .type(APPLICATION_JSON)
                                             .post(ClientResponse.class, valueAsString);
             return isOk(response);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); // FIXME
         }
     }
 

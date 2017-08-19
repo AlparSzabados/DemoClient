@@ -17,8 +17,8 @@ public class AddActivityController {
     private String activityName;
 
     public String createActivity() throws IOException {
-        new ActivityBean().createActivity(new User(getUserName()), new Activity(activityName, NOT_COMPLETED));
-        return "/activities.xhtml?faces-redirect=true";
+        new ActivityBean().createOrUpdateActivity(new User(getUserName()), new Activity(activityName, NOT_COMPLETED));
+        return "activities.xhtml";
     }
 
     public String getActivityName() {
