@@ -25,14 +25,20 @@ public class UserBean {
                      .put(ClientResponse.class, encodePassword(user));
     }
 
+    private User encodePassword(User user) {
+        user.setPassword(ENCODER.encode(user.getPassword()));
+        return user;
+    }
+
     public ClientResponse validateUser(User user) throws IOException {
         return Client.create().resource(ROOT + "validateUser/")
                      .type(APPLICATION_JSON)
                      .post(ClientResponse.class, user);
     }
 
-    private User encodePassword(User user) {
-        user.setPassword(ENCODER.encode(user.getPassword()));
-        return user;
+    public ClientResponse deleteUser(User user) throws IOException {
+        return Client.create().resource(ROOT + "deleteUser/")
+                     .type(APPLICATION_JSON)
+                     .delete(ClientResponse.class, user);
     }
 }

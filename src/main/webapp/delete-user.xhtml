@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="profile-layout.xhtml">
+    <ui:define name="content">
+        <h:form id="delete-profile">
+            <p:panel header="Are you sure you want to remove your profile?">
+                <h:panelGrid columns="1" cellpadding="5px">
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" rendered="true"/>
+                    <p:outputLabel for="userName" value="Reintroduce your user name: "/>
+                    <p:inputText id="userName" value="#{deleteUserController.user.userName}"/>
+                    <p:outputLabel for="password" value="Reintroduce your password: "/>
+                    <p:password id="password" value="#{deleteUserController.user.password}"/>
+                    <p:commandButton value="Delete" action="#{deleteUserController.delete}" update="messages"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
