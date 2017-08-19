@@ -4,6 +4,7 @@ import com.alpar.szabados.client.entities.User;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 import static com.alpar.szabados.client.beans.ActivityBean.isOk;
@@ -14,17 +15,15 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public class UserBean {
     private static final String ROOT = "http://" + HOST + ":" + PORT + "/user/";
 
-    public boolean createUser(User user) throws IOException {
-        ClientResponse response = Client.create().resource(ROOT + "createUser/")
+    public ClientResponse createUser(User user) throws IOException {
+        return Client.create().resource(ROOT + "createUser/")
                                         .type(APPLICATION_JSON)
                                         .put(ClientResponse.class, user);
-        return isOk(response);
     }
 
-    public boolean validateUser(User user) throws IOException {
-        ClientResponse response = Client.create().resource(ROOT + "validateUser/")
-                                        .type(APPLICATION_JSON)
-                                        .post(ClientResponse.class, user);
-        return isOk(response);
+    public ClientResponse validateUser(User user) throws IOException {
+        return Client.create().resource(ROOT + "validateUser/")
+                     .type(APPLICATION_JSON)
+                     .post(ClientResponse.class, user);
     }
 }
