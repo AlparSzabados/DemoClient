@@ -3,6 +3,8 @@ package com.alpar.szabados.client.controllers;
 import com.alpar.szabados.client.beans.ActivityBean;
 import com.alpar.szabados.client.entities.Activity;
 import com.alpar.szabados.client.entities.User;
+import com.alpar.szabados.client.handlers.ResponseHandler;
+import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
@@ -19,8 +21,8 @@ public class AddActivityController {
     private String activityName;
 
     public String createActivity() throws IOException {
-        new ActivityBean().createOrUpdateActivity(new User(getSessionUserName()), new Activity(activityName, NOT_COMPLETED));
-        return "activities.xhtml";
+        ClientResponse response = new ActivityBean().createOrUpdateActivity(new User(getSessionUserName()), new Activity(activityName, NOT_COMPLETED));
+        return ResponseHandler.handleResponse(response, "SUCCESSFULLY CREATED NEW ACTIVITY");
     }
 
     public String getActivityName() {
