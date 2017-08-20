@@ -1,6 +1,6 @@
 package com.alpar.szabados.client.beans;
 
-import com.alpar.szabados.client.entities.User;
+import com.alpar.szabados.client.pojos.User;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

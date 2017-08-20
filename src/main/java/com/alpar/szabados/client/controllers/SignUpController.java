@@ -1,7 +1,7 @@
 package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.UserBean;
-import com.alpar.szabados.client.entities.User;
+import com.alpar.szabados.client.pojos.User;
 import com.alpar.szabados.client.handlers.MessageFactory;
 import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;

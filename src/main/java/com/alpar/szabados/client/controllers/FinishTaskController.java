@@ -1,8 +1,8 @@
 package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.ActivityBean;
-import com.alpar.szabados.client.entities.Activity;
-import com.alpar.szabados.client.entities.User;
+import com.alpar.szabados.client.pojos.Activity;
+import com.alpar.szabados.client.pojos.User;
 import com.alpar.szabados.client.utils.LoadDataUtils;
 import org.ocpsoft.rewrite.annotation.Join;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.alpar.szabados.client.entities.TaskStatus.COMPLETED;
+import static com.alpar.szabados.client.pojos.TaskStatus.COMPLETED;
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;

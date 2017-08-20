@@ -1,9 +1,9 @@
 package com.alpar.szabados.client.utils;
 
 import com.alpar.szabados.client.beans.ActivityBean;
-import com.alpar.szabados.client.entities.Activity;
-import com.alpar.szabados.client.entities.TaskStatus;
-import com.alpar.szabados.client.entities.User;
+import com.alpar.szabados.client.pojos.Activity;
+import com.alpar.szabados.client.pojos.TaskStatus;
+import com.alpar.szabados.client.pojos.User;
 import com.sun.jersey.api.client.ClientResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 

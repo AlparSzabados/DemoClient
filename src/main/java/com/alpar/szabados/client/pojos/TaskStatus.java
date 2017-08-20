@@ -1,4 +1,4 @@
-package com.alpar.szabados.client.entities;
+package com.alpar.szabados.client.pojos;
 
 import java.io.Serializable;
 
