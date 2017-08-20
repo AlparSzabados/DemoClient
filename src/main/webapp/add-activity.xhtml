@@ -11,8 +11,8 @@
                 <h:panelGrid columns="1" cellpadding="5px">
                     <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
                     <p:outputLabel for="activityName" value="Activity Name: "/>
-                    <p:inputText id="activityName" value="#{addActivity.activityName}"/>
-                    <p:commandButton value="Create Activity" action="#{addActivity.createActivity}" update="activityName"/>
+                    <p:inputText id="activityName" value="#{addActivityController.activityName}"/>
+                    <p:commandButton value="Create Activity" action="#{addActivityController.createActivity}" update="activityName"/>
                 </h:panelGrid>
             </p:panel>
         </h:form>

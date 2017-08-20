@@ -14,6 +14,9 @@ import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
+/**
+ * Controller managing password change
+ */
 @ManagedBean(name = "updatePasswordController")
 @Join(path = "/update-password", to = "/update-password.jsf")
 public class UpdatePasswordController {
@@ -22,11 +25,18 @@ public class UpdatePasswordController {
 
     private UserBean userBean = new UserBean();
 
-    public String update() throws IOException {
+    /**
+     * Checks for empty fields, old password is valid, old password != new password, error messages will be returned
+     * if any of these restrictions are not met
+     * In case of successful validations, and password update a confirmation message will be returned
+     *
+     * @return server response message
+     */
+    public String update() {
         User user = new User(getSessionUserName(), oldPassword);
 
         if (oldPassword.isEmpty() || newPassword.isEmpty()) {
-            error("PASSWORD CAN'T BE NULL"); return "";
+            error("FIELD CAN'T BE EMPTY"); return "";
         } else if (Objects.equals(oldPassword, newPassword)) {
             error("NEW PASSWORD MUST BE DIFFERENT"); return "";
         } else if (isOk(userBean.validateUser(user))) {
@@ -38,7 +48,7 @@ public class UpdatePasswordController {
     }
 
     private String validate(ClientResponse response) {
-        return handleResponse(response, "Password updated successfully");
+        return handleResponse(response, "PASSWORD UPDATED SUCCESSFULLY");
     }
 
     public String getOldPassword() {

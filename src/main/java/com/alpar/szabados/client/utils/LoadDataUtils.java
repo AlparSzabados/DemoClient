@@ -19,8 +19,11 @@ import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static org.codehaus.jackson.map.SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS;
 
 public class LoadDataUtils {
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().configure(FAIL_ON_EMPTY_BEANS, false);
 
+    /**
+     * @param userActivities received from the server
+     * @return list of unique activity names
+     */
     public static List<String> getActivityNames(Activity[] userActivities) {
         return Arrays.stream(userActivities)
                      .map(Activity::getActivityName)
@@ -28,6 +31,10 @@ public class LoadDataUtils {
                      .collect(Collectors.toList());
     }
 
+    /**
+     * @param userActivities received from the server
+     * @return array of finished activities that have the current date
+     */
     public static String[] getFinishedActivities(Activity[] userActivities) {
         String now = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
 
@@ -35,14 +42,5 @@ public class LoadDataUtils {
                      .filter(activity -> Objects.equals(activity.getActivityDate(), now))
                      .filter(activity -> activity.getTaskStatus() == TaskStatus.COMPLETED)
                      .map(Activity::getActivityName).map(String::toString).toArray(String[]::new);
-    }
-
-    public static Activity[] getUserActivities(User user) throws IOException {
-        ClientResponse response = new ActivityBean().findUserActivities(user);
-        if (isOk(response)) {
-            return OBJECT_MAPPER.readValue(response.getEntityInputStream(), Activity[].class);
-        } else {
-            return new Activity[0];
-        }
     }
 }

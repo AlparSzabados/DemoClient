@@ -3,6 +3,9 @@ package com.alpar.szabados.client.pojos;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+/**
+ * Wrapper class for User and Activity objects
+ */
 @XmlRootElement
 public class UserAndActivityWrapper implements Serializable {
     private User user;

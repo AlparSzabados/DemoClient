@@ -10,7 +10,7 @@
     <ui:define name="content">
         <h:form id="history">
             <p:panel header="Activity History" style="text-align:center">
-                <p:dataTable id="table" var="activity" value="#{history.activities}">
+                <p:dataTable id="table" var="activity" value="#{historyController.activities}">
                     <p:column>
                         <f:facet name="header">Date</f:facet>
                         <h:outputText value="#{activity.activityDate}"/>

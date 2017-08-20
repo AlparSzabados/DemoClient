@@ -4,6 +4,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+/**
+ * Factory class used for creating messages
+ */
 @ManagedBean
 public class MessageFactory {
 

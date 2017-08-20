@@ -14,21 +14,43 @@ import java.util.List;
 import static com.alpar.szabados.client.pojos.TaskStatus.COMPLETED;
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
+import static com.alpar.szabados.client.utils.LoadDataUtils.*;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
+/**
+ * Controller for finishing activities
+ */
 @ManagedBean(name = "finishTaskController")
 @Join(path = "/activities", to = "/activities.jsf")
 public class FinishTaskController {
-    private Activity[] userActivities = LoadDataUtils.getUserActivities(new User(getSessionUserName()));
-    private List<String> activities = LoadDataUtils.getActivityNames(userActivities);
-    private String[] selectedActivities = LoadDataUtils.getFinishedActivities(userActivities);
+    private ActivityBean activityBean = new ActivityBean();
+    /**
+     * Loads all activities of the current user
+     */
+    private Activity[] userActivities = activityBean.getUserActivities(new User(getSessionUserName()));
+
+    /**
+     * Loads all activity names without duplicates
+     */
+    private List<String> activities = getActivityNames(userActivities);
+
+    /**
+     * Loads all tasks that have a COMPLETED status and their date equals the current date.
+     */
+    private String[] selectedActivities = getFinishedActivities(userActivities);
 
     public FinishTaskController() throws IOException {
     }
 
-    public String completeTask() throws IOException {
+    /**
+     * All activities are sent to the ActivityBean for creation in case there aren't any activities with the current date,
+     * or for update to the COMPLETED status
+     *
+     * @return redirect to the activity-history page
+     */
+    public String completeTask() {
         Arrays.stream(selectedActivities)
-              .map(selectedActivity -> new ActivityBean().createOrUpdateActivity(new User(getSessionUserName()), new Activity(selectedActivity, COMPLETED)))
+              .map(selectedActivity -> activityBean.createOrUpdateActivity(new User(getSessionUserName()), new Activity(selectedActivity, COMPLETED)))
               .filter(response -> !isOk(response))
               .forEach(response -> handleResponse(response, null));
         return "/activity-history.xhtml";
