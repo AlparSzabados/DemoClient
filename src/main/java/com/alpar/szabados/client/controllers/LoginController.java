@@ -1,6 +1,7 @@
 package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.UserBean;
+import com.alpar.szabados.client.handlers.MessageFactory;
 import com.alpar.szabados.client.pojos.User;
 import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;
@@ -19,6 +20,10 @@ public class LoginController {
     private UserBean userBean = new UserBean();
 
     public String validateUsernamePassword() throws IOException {
+        if (user.getUserName().isEmpty() || user.getPassword().isEmpty()) {
+            MessageFactory.info("FIELD CAN'T BE EMPTY"); return "";
+        }
+
         ClientResponse response = userBean.validateUser(user);
         if (isOk(response)) {
             getSession().setAttribute("username", user.getUserName());

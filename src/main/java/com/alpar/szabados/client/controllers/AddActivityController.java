@@ -1,15 +1,16 @@
 package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.ActivityBean;
+import com.alpar.szabados.client.handlers.MessageFactory;
 import com.alpar.szabados.client.pojos.Activity;
 import com.alpar.szabados.client.pojos.User;
-import com.alpar.szabados.client.handlers.ResponseHandler;
 import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
 import java.io.IOException;
 
+import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.pojos.TaskStatus.NOT_COMPLETED;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
@@ -19,8 +20,13 @@ public class AddActivityController {
     private String activityName;
 
     public String createActivity() throws IOException {
+        if (activityName.isEmpty()) {
+            MessageFactory.info("FIELD CAN'T BE EMPTY"); return "";
+        }
+
         ClientResponse response = new ActivityBean().createOrUpdateActivity(new User(getSessionUserName()), new Activity(activityName, NOT_COMPLETED));
-        return ResponseHandler.handleResponse(response, "SUCCESSFULLY CREATED NEW ACTIVITY");
+        activityName = "";
+        return handleResponse(response, "SUCCESSFULLY CREATED NEW ACTIVITY");
     }
 
     public String getActivityName() {
