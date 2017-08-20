@@ -13,7 +13,7 @@
                     <p:outputLabel for="userName" value="Choose a User Name: "/>
                     <p:inputText id="userName" value="#{signUpController.user.userName}"/>
                     <p:outputLabel for="password" value="Choose a Password: "/>
-                    <p:password id="password" value="#{signUpController.user.password}"/>
+                    <p:password id="password" value="#{signUpController.user.password}" feedback="true" inline="true"/>
                     <p:commandButton value="Sign Up" action="#{signUpController.create}" update="messages"/>
                 </h:panelGrid>
             </p:panel>
