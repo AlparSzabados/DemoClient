@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static org.codehaus.jackson.map.SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS;
 
 public class LoadDataUtils {
@@ -38,6 +39,10 @@ public class LoadDataUtils {
 
     public static Activity[] getUserActivities(User user) throws IOException {
         ClientResponse response = new ActivityBean().findUserActivities(user);
-        return OBJECT_MAPPER.readValue(response.getEntityInputStream(), Activity[].class);
+        if (isOk(response)) {
+            return OBJECT_MAPPER.readValue(response.getEntityInputStream(), Activity[].class);
+        } else {
+            return new Activity[0];
+        }
     }
 }
