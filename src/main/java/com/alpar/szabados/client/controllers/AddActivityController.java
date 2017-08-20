@@ -8,12 +8,10 @@ import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 
 import static com.alpar.szabados.client.entities.TaskStatus.NOT_COMPLETED;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
-
 
 @ManagedBean(name = "addActivity")
 @Join(path = "/add-activity", to = "/add-activity.jsf")

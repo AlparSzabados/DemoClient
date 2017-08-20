@@ -36,10 +36,9 @@ public class DeleteUserController {
         if (isOk(response)) {
             activityBean.deleteActivities(user);
             if (isOk(userBean.deleteUser(user))) {
-                getSession().invalidate();
-                return "login.xhtml";
-            } error("SOMETHING WENT WRONG"); return "";
-
+                getSession().invalidate(); return "login.xhtml";
+            }
+            error("SOMETHING WENT WRONG"); return "";
         } else {
             return handleResponse(response, null);
         }

@@ -7,6 +7,7 @@ public class SessionUtils {
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
     }
+
     public static String getSessionUserName() {
         return getSession().getAttribute("username").toString();
     }

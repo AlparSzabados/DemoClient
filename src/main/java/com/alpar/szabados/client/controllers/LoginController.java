@@ -6,13 +6,11 @@ import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.io.IOException;
 
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static com.alpar.szabados.client.utils.SessionUtils.getSession;
-
 
 @ManagedBean(name = "loginController")
 @Join(path = "/", to = "/login.jsf")
