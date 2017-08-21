@@ -1,8 +1,8 @@
 package com.alpar.szabados.client.beans;
 
-import com.alpar.szabados.client.pojos.Activity;
-import com.alpar.szabados.client.pojos.User;
-import com.alpar.szabados.client.pojos.UserAndActivityWrapper;
+import com.alpar.szabados.client.dtos.Activity;
+import com.alpar.szabados.client.dtos.User;
+import com.alpar.szabados.client.dtos.UserAndActivityWrapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import org.codehaus.jackson.map.ObjectMapper;

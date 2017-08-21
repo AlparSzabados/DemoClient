@@ -1,13 +1,11 @@
 package com.alpar.szabados.client.beans;
 
-import com.alpar.szabados.client.pojos.User;
+import com.alpar.szabados.client.dtos.User;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 import static com.alpar.szabados.client.utils.HostConfig.HOST;
 import static com.alpar.szabados.client.utils.HostConfig.PORT;

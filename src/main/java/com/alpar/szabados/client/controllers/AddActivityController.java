@@ -2,8 +2,8 @@ package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.ActivityBean;
 import com.alpar.szabados.client.handlers.MessageFactory;
-import com.alpar.szabados.client.pojos.Activity;
-import com.alpar.szabados.client.pojos.User;
+import com.alpar.szabados.client.dtos.Activity;
+import com.alpar.szabados.client.dtos.User;
 import com.sun.jersey.api.client.ClientResponse;
 import org.ocpsoft.rewrite.annotation.Join;
 
@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedBean;
 import java.io.IOException;
 
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
-import static com.alpar.szabados.client.pojos.TaskStatus.NOT_COMPLETED;
+import static com.alpar.szabados.client.dtos.TaskStatus.NOT_COMPLETED;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
 /**

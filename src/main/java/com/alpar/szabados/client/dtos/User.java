@@ -1,4 +1,4 @@
-package com.alpar.szabados.client.pojos;
+package com.alpar.szabados.client.dtos;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;

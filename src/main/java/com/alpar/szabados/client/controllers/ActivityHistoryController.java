@@ -1,8 +1,8 @@
 package com.alpar.szabados.client.controllers;
 
 import com.alpar.szabados.client.beans.ActivityBean;
-import com.alpar.szabados.client.pojos.Activity;
-import com.alpar.szabados.client.pojos.User;
+import com.alpar.szabados.client.dtos.Activity;
+import com.alpar.szabados.client.dtos.User;
 import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
