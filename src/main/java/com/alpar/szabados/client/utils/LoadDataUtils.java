@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class LoadDataUtils {
+import static java.time.format.DateTimeFormatter.*;
 
+public class LoadDataUtils {
     /**
      * @param userActivities received from the server
      * @return list of unique activity names
@@ -28,11 +29,13 @@ public class LoadDataUtils {
      * @return array of finished activities that have the current date
      */
     public static String[] getFinishedActivities(Activity[] userActivities) {
-        String now = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
+        String now = LocalDateTime.now().format(ISO_DATE);
 
         return Arrays.stream(userActivities)
                      .filter(activity -> Objects.equals(activity.getActivityDate(), now))
                      .filter(activity -> activity.getTaskStatus() == TaskStatus.COMPLETED)
-                     .map(Activity::getActivityName).map(String::toString).toArray(String[]::new);
+                     .map(Activity::getActivityName)
+                     .map(String::toString)
+                     .toArray(String[]::new);
     }
 }
