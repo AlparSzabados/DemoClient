@@ -13,7 +13,8 @@ import java.util.List;
 import static com.alpar.szabados.client.dtos.TaskStatus.COMPLETED;
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
-import static com.alpar.szabados.client.utils.LoadDataUtils.*;
+import static com.alpar.szabados.client.utils.LoadDataUtils.getActivityNames;
+import static com.alpar.szabados.client.utils.LoadDataUtils.getFinishedActivities;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
 /**

@@ -12,7 +12,7 @@ import static com.alpar.szabados.client.handlers.MessageFactory.*;
 public class ResponseHandler {
 
     /**
-     * @param response from the server
+     * @param response   from the server
      * @param isOkDetail optional detail for OK status cases
      * @return server messages
      */

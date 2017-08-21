@@ -35,14 +35,17 @@ public class UpdatePasswordController {
         User user = new User(getSessionUserName(), oldPassword);
 
         if (oldPassword.isEmpty() || newPassword.isEmpty()) {
-            error("FIELD CAN'T BE EMPTY"); return "";
+            error("FIELD CAN'T BE EMPTY");
+            return "";
         } else if (Objects.equals(oldPassword, newPassword)) {
-            error("NEW PASSWORD MUST BE DIFFERENT"); return "";
+            error("NEW PASSWORD MUST BE DIFFERENT");
+            return "";
         } else if (isOk(userBean.validateUser(user))) {
             ClientResponse response = userBean.updateUserPassword(new User(getSessionUserName(), newPassword));
             return validate(response);
         } else {
-            error("OLD PASSWORD MISMATCH"); return "";
+            error("OLD PASSWORD MISMATCH");
+            return "";
         }
     }
 

@@ -35,7 +35,8 @@ public class DeleteUserController {
             ClientResponse response = userBean.validateUser(user);
             return validate(response);
         } else {
-            error("INVALID USERNAME"); return "";
+            error("INVALID USERNAME");
+            return "";
         }
     }
 
@@ -54,7 +55,8 @@ public class DeleteUserController {
                 getSession().invalidate();
                 return "login.xhtml";
             }
-            error("SOMETHING WENT WRONG"); return "";
+            error("SOMETHING WENT WRONG");
+            return "";
         } else {
             return handleResponse(response, null);
         }

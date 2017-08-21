@@ -7,7 +7,7 @@ import org.ocpsoft.rewrite.annotation.Join;
 
 import javax.faces.bean.ManagedBean;
 
-import static com.alpar.szabados.client.handlers.MessageFactory.*;
+import static com.alpar.szabados.client.handlers.MessageFactory.info;
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.handlers.ResponseHandler.isOk;
 import static com.alpar.szabados.client.utils.SessionUtils.getSession;
@@ -30,7 +30,8 @@ public class SignUpController {
      */
     public String create() {
         if (user.getUserName().isEmpty() || user.getPassword().isEmpty()) {
-            info("FIELD CAN'T BE EMPTY"); return "";
+            info("FIELD CAN'T BE EMPTY");
+            return "";
         }
 
         // If the server returns an OK response, the User's username will be added to the current session

@@ -4,13 +4,12 @@ import com.alpar.szabados.client.dtos.Activity;
 import com.alpar.szabados.client.dtos.TaskStatus;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static java.time.format.DateTimeFormatter.*;
+import static java.time.format.DateTimeFormatter.ISO_DATE;
 
 public class LoadDataUtils {
     /**
