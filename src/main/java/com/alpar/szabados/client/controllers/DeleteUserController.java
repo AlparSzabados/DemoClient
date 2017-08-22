@@ -32,34 +32,17 @@ public class DeleteUserController {
      */
     public String delete() {
         if (Objects.equals(user.getUserName(), getSessionUserName())) {
-            ClientResponse response = userBean.validateUser(user);
-            return validate(response);
-        } else {
-            error("INVALID USERNAME");
-            return "";
-        }
-    }
+            ClientResponse deleteActivityResponse = activityBean.deleteActivities(user);
+            ClientResponse deleteUserResponse = userBean.deleteUser(user);
 
-    /**
-     * If the User is a valid user, a request will be sent to the ActivityBean to delete all Activities.
-     * The User deletion request is sent second. If it returns an OK response, the session is invalidated and
-     * the user is redirected to the login page.
-     *
-     * @param response from the user validation
-     * @return the response from the server or redirection to the login page.
-     */
-    private String validate(ClientResponse response) {
-        if (isOk(response)) {
-            activityBean.deleteActivities(user);
-            if (isOk(userBean.deleteUser(user))) {
+            if (isOk(deleteActivityResponse) && isOk(deleteUserResponse)) {
                 getSession().invalidate();
                 return "login.xhtml";
             }
-            error("SOMETHING WENT WRONG");
-            return "";
-        } else {
-            return handleResponse(response, null);
+            return handleResponse(deleteActivityResponse, null);
         }
+        error("INVALID USERNAME");
+        return "";
     }
 
     public User getUser() {

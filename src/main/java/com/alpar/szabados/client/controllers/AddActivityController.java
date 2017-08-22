@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import java.io.IOException;
 
 import static com.alpar.szabados.client.dtos.TaskStatus.NOT_COMPLETED;
+import static com.alpar.szabados.client.handlers.MessageFactory.*;
 import static com.alpar.szabados.client.handlers.ResponseHandler.handleResponse;
 import static com.alpar.szabados.client.utils.SessionUtils.getSessionUserName;
 
@@ -35,12 +36,13 @@ public class AddActivityController {
      */
     public String createActivity() throws IOException {
         if (activityName.isEmpty()) {
-            MessageFactory.info("FIELD CAN'T BE EMPTY");
+            info("FIELD CAN'T BE EMPTY");
             return "";
         }
 
         ClientResponse response = activityBean.createOrUpdateActivity(new User(getSessionUserName()), new Activity(activityName, NOT_COMPLETED));
         activityName = "";// Clears the activityName field on the page
+
         return handleResponse(response, "SUCCESSFULLY CREATED NEW ACTIVITY");
     }
 
